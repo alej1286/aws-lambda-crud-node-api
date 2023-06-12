@@ -1,0 +1,16 @@
+########### REST Client ### For Testing API
+# baseURL
+@baseURL = {{$dotenv API_URL}}
+###
+#
+GET {{ baseURL }}/tasks
+
+###
+# Log in 
+POST {{ baseURL }}/tasks
+Content-Type: application/json
+
+{
+	"title": "3 GDG Algeciras Febrero ",
+    "description":"Centro Documental "
+}
