@@ -1,20 +1,25 @@
 const AWS = require("aws-sdk");
 
-const getTasks = async (event) => {
+const getTask = async (event) => {
   const dynamodb = new AWS.DynamoDB.DocumentClient();
 
-  const result = await dynamodb.scan({ TableName: "TaskTable" }).promise();
+  const { id } = event.pathParameters;
 
-  const tasks = result.Items;
+  const result = await dynamodb
+    .get({
+      TableName: "TaskTable",
+      Key: { id },
+    })
+    .promise();
+
+  const task = result.Item;
 
   return {
     status: 200,
-    body: {
-      tasks,
-    },
+    body: task,
   };
 };
 
 module.exports = {
-  getTasks,
+  getTask,
 };

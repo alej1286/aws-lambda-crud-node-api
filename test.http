@@ -2,15 +2,37 @@
 # baseURL
 @baseURL = {{$dotenv API_URL}}
 ###
-#
+# GET ALL
 GET {{ baseURL }}/tasks
 
 ###
-# Log in 
+# GET BY ID
+GET {{ baseURL }}/tasks/07f6d607-6905-4aa1-9409-4fc4dcb2c6d1
+
+###
+# UPDATE 
+PUT {{ baseURL }}/tasks/07f6d607-6905-4aa1-9409-4fc4dcb2c6d1
+Content-Type: application/json
+
+{
+	"title": "CHANGED GDG Algeciras Febrero ",
+    "description":"CHANGED Centro Documental ",
+    "createdAt": "",
+    "done": true
+}
+
+###
+# CREATE
 POST {{ baseURL }}/tasks
 Content-Type: application/json
 
 {
 	"title": "3 GDG Algeciras Febrero ",
-    "description":"Centro Documental "
+    "description":"3 Centro Documental ",
+    "createdAt": "-",
+    "done": true
 }
+
+###
+# DELETE BY ID
+DELETE {{ baseURL }}/tasks/a757cfb2-b3c9-4247-919a-46bdcdaed5c1
